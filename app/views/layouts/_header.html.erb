@@ -2,6 +2,11 @@
   <div class="navbar-inner">
     <div class="container">
       <%= link_to "sample app", root_path, id: "logo" %>
+      <span><% if signed_in? %>
+        <% if current_user.admin? %>
+          <font color="aqua" size="4" style="float:left; line-height:40px; margin-left:380px; font-size:14px;"><b>You are an admin user</b></font>
+        <% end %>
+      <% end %></span>
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
