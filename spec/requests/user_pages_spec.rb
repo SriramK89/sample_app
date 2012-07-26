@@ -16,7 +16,10 @@ describe "User pages" do
     let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
     let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
 
-    before { visit user_path(user) }
+    before do
+      sign_in user
+      visit user_path(user)
+    end
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
@@ -75,6 +78,22 @@ describe "User pages" do
           it { should have_selector('input', value: 'Follow') }
         end
       end
+    end
+
+    describe "followers and following stats" do
+      let(:first_user) { FactoryGirl.create(:user) }
+      let(:second_user) { FactoryGirl.create(:user) }
+      let(:third_user) { FactoryGirl.create(:user) }
+
+      before do
+        first_user.follow!(user)
+        second_user.follow!(user)
+        user.follow!(third_user)
+        visit user_path(user)
+      end
+
+      it { should have_link("1 following", href: following_user_path(user)) }
+      it { should have_link("2 followers", href: followers_user_path(user)) }
     end
   end
 

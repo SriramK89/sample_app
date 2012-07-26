@@ -42,4 +42,17 @@ describe "Micropost pages" do
       end
     end
   end
+
+  describe "micropost display" do
+    let(:micropost) { FactoryGirl.create(:micropost, user: user) }
+    before { visit micropost_path(micropost) }
+
+    it { should have_content(micropost.content) }
+
+    describe "with comments" do
+      let(:comment) { FactoryGirl.create(:comment) }
+
+      it { should have_content(comment.content) }
+    end
+  end
 end

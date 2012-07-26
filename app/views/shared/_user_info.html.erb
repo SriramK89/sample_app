@@ -4,9 +4,11 @@
 <h1>
   <%= current_user.name %>
 </h1>
-<span>
-  <%= link_to "view my profile", current_user %>
-</span>
-<span>
+<% if( params[:controller]=="static_pages" || params[:action]!="show" ) %>
+  <span>
+    <%= link_to "view my profile", current_user %>
+  </span>
+  <span>
   <%= pluralize(current_user.microposts.count, "micropost") %>
-</span>
+  </span>
+<% end %>

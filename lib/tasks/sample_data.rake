@@ -4,12 +4,13 @@ namespace :db do
     make_users
     make_microposts
     make_relationships
+    make_comments
   end
 end
 
 def make_users
-  admin = User.create!(name:     "Example User",
-                       email:    "example@railstutorial.org",
+  admin = User.create!(name:     "Sriram Kumar",
+                       email:    "ksrirambecse@gmail.com",
                        password: "foobar",
                        password_confirmation: "foobar")
   admin.toggle!(:admin)
@@ -39,4 +40,17 @@ def make_relationships
   followers      = users[3..40]
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
+end
+
+def make_comments
+  users = User.all(limit: 10)
+  microposts = Micropost.all(limit:20)
+  content = Faker::Lorem.sentence(5)
+  10.times do
+    users.each do |user|
+      microposts.each do |micropost|
+        micropost.comments.create!(content: content, user_id: user.id)
+      end
+    end
+  end
 end

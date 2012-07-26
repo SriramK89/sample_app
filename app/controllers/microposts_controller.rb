@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :signed_in_user, only: [:create, :destroy, :show]
   before_filter :correct_user,   only: :destroy
 
   def create
@@ -16,6 +16,17 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     redirect_to root_path
+  end
+
+  def show
+    @micropost = Micropost.find(params[:id])
+    @user = User.find(@micropost.user_id)
+    @comments = @micropost.comments.paginate(page: params[:page])
+    if @micropost.content.length > 10
+      @title = @micropost.content[0...10] + "..."
+    else
+      @title = @micropost.content
+    end
   end
 
   private

@@ -5,7 +5,8 @@
   </span>
   <span class="content"><%= feed_item.content %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+    <%= link_to "Posted " + time_ago_in_words(feed_item.created_at) + " ago.", micropost_path(feed_item) %>
+    <%= pluralize(feed_item.comments.count, "comment") %> on this micropost.
   </span>
   <% if current_user?(feed_item.user) %>
     <%= link_to "delete", feed_item, method: :delete,
