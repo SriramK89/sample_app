@@ -6,5 +6,5 @@ class Comment < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :micropost_id, presence: true
-  validates :content, presence: true, length: { maximum: 500 }
+  validates :content, presence: true, length: { maximum: 500, minimum: 5 }
 end
