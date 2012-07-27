@@ -2,7 +2,7 @@
 <h1>All users</h1>
 
 <%= will_paginate %>
-
+	<%= pagination_subset_items_display(@users.current_page, @users.per_page, @users.length, @users.count, "users") %><br><br>
 <ul class="users">
   <%= render @users %>
 </ul>

@@ -14,6 +14,7 @@ Posted <%= time_ago_in_words(@micropost.created_at) %> ago.
                                  title: @micropost.content %>
 <% end %>
 <% if @comments.any? %>
+	<br><%= pagination_subset_items_display(@comments.current_page, @comments.per_page, @comments.length, @comments.count, "comments") %><br>
 	<ol id="comment" class="comment">
 		<%= render @comments %>
 	</ol>

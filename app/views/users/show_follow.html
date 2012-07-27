@@ -18,6 +18,7 @@
   <div class="span8">
     <h3><%= @title %></h3>
     <% if @users.any? %>
+      <br><%= pagination_subset_items_display(@users.current_page, @users.per_page, @users.length, @users.count, "users") %><br>
       <ul class="users">
         <%= render @users %>
       </ul>
