@@ -21,7 +21,7 @@ class MicropostsController < ApplicationController
   def show
     @micropost = Micropost.find(params[:id])
     @user = User.find(@micropost.user_id)
-    @comments = @micropost.comments.paginate(page: params[:page])
+    @comments = @micropost.comments.paginate(page: params[:page], per_page: 10)
     if @micropost.content.length > 10
       @title = @micropost.content[0...10] + "..."
     else
