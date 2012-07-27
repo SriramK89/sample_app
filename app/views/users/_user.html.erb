@@ -1,5 +1,5 @@
 <li>
-  <%= gravatar_for user, size: 52 %>
+  <%= link_to gravatar_for(user, size: 52), user %>
   <%= link_to user.name, user %> | 
   <%= pluralize(user.microposts.count, "micropost") %> | 
   <%= pluralize(user.comments.count, "comment") %>
