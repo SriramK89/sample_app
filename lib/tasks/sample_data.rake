@@ -49,7 +49,7 @@ def make_comments
   10.times do
     users.each do |user|
       microposts.each do |micropost|
-        micropost.comments.create!(content: content, user_id: user.id)
+        user.comments.create!(content: content, micropost_id: micropost.id)
       end
     end
   end
