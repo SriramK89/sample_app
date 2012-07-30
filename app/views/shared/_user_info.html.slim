@@ -1,0 +1,9 @@
+a href="#{user_path(object)}"
+  == gravatar_for object, size: 52
+h1
+  == object.name
+- if( @profile_link_display_off.nil? )
+  span
+    == link_to "view my profile", object
+  span
+    == pluralize(object.microposts.count, "micropost")

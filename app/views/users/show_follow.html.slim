@@ -1,0 +1,21 @@
+- provide(:title, @title)
+.row
+  aside.span4
+    section
+      == render 'shared/user_info', object: @user
+    section
+      == render 'shared/stats'
+      - if @users.any?
+        .user_avatars
+          - @users.each do |user|
+            == link_to gravatar_for(user, size: 30), user
+  .span8
+    h3
+      == @title
+    - if @users.any?
+      br
+      == pagination_subset_items_display(@users.current_page, @users.per_page, @users.length, @users.count, "users")
+      br
+      ul.users
+        == render @users
+      == will_paginate

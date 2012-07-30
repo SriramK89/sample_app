@@ -1,0 +1,9 @@
+li
+ span.content
+  == micropost.content
+ span.timestamp
+  == link_to "Posted " + time_ago_in_words(micropost.created_at) + " ago.", micropost_path(micropost)
+  == pluralize(micropost.comments.count, "comment")
+  |  on this micropost.
+ - if current_user?(micropost.user)
+  == link_to "delete", micropost, method: :delete, data: { confirm: "Are you sure to delete?" }, title: micropost.content

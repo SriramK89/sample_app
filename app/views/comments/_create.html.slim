@@ -1,0 +1,9 @@
+- if current_user.following?(@micropost.user) || current_user == @micropost.user
+  == form_for(current_user.comments.build(micropost_id: @micropost.id)) do |f|
+   == render 'shared/error_messages', object: f.object
+   .field.span7.comments
+    == f.text_field :content, placeholder: "Post a comment..."
+   == f.hidden_field :user_id
+   == f.hidden_field :micropost_id
+   .comments
+    == f.submit "Post", class: "btn btn-large btn-primary post"

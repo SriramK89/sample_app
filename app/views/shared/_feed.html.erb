@@ -1,7 +1,0 @@
-<% if @feed_items.any? %>
-  <br><%= pagination_subset_items_display(@feed_items.current_page, @feed_items.per_page, @feed_items.length, @feed_items.count, "microposts") %><br>
-  <ol class="microposts">
-    <%= render partial: 'shared/feed_item', collection: @feed_items %>
-  </ol>
-  <%= will_paginate @feed_items %>
-<% end %>
