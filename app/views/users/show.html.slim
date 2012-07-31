@@ -13,7 +13,7 @@
         == @user.microposts.count
         | )
       br
-      == pagination_subset_items_display(@microposts.current_page, @microposts.per_page, @microposts.length, @microposts.count, "microposts")
+      == pagination_subset_items_display(@microposts.current_page, @microposts.per_page, @microposts.length, @microposts.count, "micropost")
       br
       ol.microposts
         == render @microposts
